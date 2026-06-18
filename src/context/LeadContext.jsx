@@ -10,20 +10,14 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
  *   phone: string,
  *   status: 'New' | 'Contacted' | 'Meeting Scheduled' | 'Proposal Sent' | 'Won' | 'Lost',
  *   source: 'Website' | 'Referral' | 'LinkedIn' | 'Cold Call' | 'Email Campaign' | 'Other',
+ *   estimatedValue: number,
  *   createdAt: string (ISO date),
  *   date: string (YYYY-MM-DD for backward compatibility)
  * }
  */
 
-// Sample initial leads if no local storage data is found
-const INITIAL_LEADS = [
-  { id: crypto.randomUUID(), name: 'Alice Smith', company: 'TechNova', email: 'alice@technova.io', phone: '+1 555-0199', status: 'New', source: 'Website', createdAt: '2026-06-15T10:00:00Z', date: '2026-06-15' },
-  { id: crypto.randomUUID(), name: 'Bob Johnson', company: 'Apex Global', email: 'bob@apex.com', phone: '+1 555-0142', status: 'Contacted', source: 'LinkedIn', createdAt: '2026-06-14T10:00:00Z', date: '2026-06-14' },
-  { id: crypto.randomUUID(), name: 'Charlie Davis', company: 'Initech Solutions', email: 'charlie@initech.co', phone: '+1 555-0176', status: 'Meeting Scheduled', source: 'Referral', createdAt: '2026-06-12T10:00:00Z', date: '2026-06-12' },
-  { id: crypto.randomUUID(), name: 'Diana Prince', company: 'Wayne Enterprises', email: 'diana@wayne.com', phone: '+1 555-0188', status: 'Proposal Sent', source: 'Email Campaign', createdAt: '2026-06-10T10:00:00Z', date: '2026-06-10' },
-  { id: crypto.randomUUID(), name: 'Ethan Hunt', company: 'Impossible Labs', email: 'ethan@impossible.org', phone: '+1 555-0131', status: 'Lost', source: 'Cold Call', createdAt: '2026-06-08T10:00:00Z', date: '2026-06-08' },
-  { id: crypto.randomUUID(), name: 'Fiona Gallagher', company: 'Patsy\'s Pies', email: 'fiona@patsys.com', phone: '+1 555-0212', status: 'Won', source: 'Other', createdAt: '2026-06-16T10:00:00Z', date: '2026-06-16' }
-];
+import useLocalStorage from '../hooks/useLocalStorage';
+import { SAMPLE_LEADS } from '../data/sampleLeads';
 
 export const LeadContext = createContext(undefined);
 
@@ -32,14 +26,8 @@ export const LeadContext = createContext(undefined);
  * @component
  */
 export function LeadProvider({ children }) {
-  const [leads, setLeads] = useState(() => {
-    const saved = localStorage.getItem('crm_leads');
-    return saved ? JSON.parse(saved) : INITIAL_LEADS;
-  });
-
-  useEffect(() => {
-    localStorage.setItem('crm_leads', JSON.stringify(leads));
-  }, [leads]);
+  // useLocalStorage automatically manages syncing state changes to localStorage under the given key
+  const [leads, setLeads] = useLocalStorage('startup-crm-leads', SAMPLE_LEADS);
 
   /**
    * Adds a new lead to the state and local storage.

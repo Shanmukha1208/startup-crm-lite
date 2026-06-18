@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect } from 'react';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export const ThemeContext = createContext(undefined);
 
@@ -7,10 +8,7 @@ export const ThemeContext = createContext(undefined);
  * @component
  */
 export function ThemeProvider({ children }) {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem('crm_theme');
-    return saved ? JSON.parse(saved) : false;
-  });
+  const [isDarkMode, setIsDarkMode] = useLocalStorage('startup-crm-theme', false);
 
   // Apply theme to document on mount and when state changes
   useEffect(() => {
@@ -20,7 +18,6 @@ export function ThemeProvider({ children }) {
     } else {
       root.classList.remove('dark');
     }
-    localStorage.setItem('crm_theme', JSON.stringify(isDarkMode));
   }, [isDarkMode]);
 
   /**
