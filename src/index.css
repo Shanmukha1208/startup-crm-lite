@@ -16,3 +16,17 @@
   --color-text-dark: #0F172A;
   --color-text-gray: #64748B;
 }
+
+/* Dark Mode Overrides */
+.dark {
+  --color-background: #0B0F19;
+  --color-card: #111827;
+  --color-text-dark: #F9FAFB;
+  --color-text-gray: #9CA3AF;
+  color-scheme: dark;
+}
+
+/* Smooth transition for theme switching */
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}

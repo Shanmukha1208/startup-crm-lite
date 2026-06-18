@@ -8,22 +8,7 @@ import PipelineOverview from '../components/dashboard/PipelineOverview';
 import RecentLeads from '../components/dashboard/RecentLeads';
 import QuickActions from '../components/dashboard/QuickActions';
 
-/**
- * Sample leads data for the dashboard presentation.
- * In a production release (Phase 8), this data will be retrieved from the central state or API.
- */
-const SAMPLE_LEADS = [
-  { id: 1, name: 'Alice Smith', company: 'TechNova', email: 'alice@technova.io', phone: '+1 555-0199', status: 'New', date: '2026-06-15' },
-  { id: 2, name: 'Bob Johnson', company: 'Apex Global', email: 'bob@apex.com', phone: '+1 555-0142', status: 'Contacted', date: '2026-06-14' },
-  { id: 3, name: 'Charlie Davis', company: 'Initech Solutions', email: 'charlie@initech.co', phone: '+1 555-0176', status: 'Qualified', date: '2026-06-12' },
-  { id: 4, name: 'Diana Prince', company: 'Wayne Enterprises', email: 'diana@wayne.com', phone: '+1 555-0188', status: 'Proposal Sent', date: '2026-06-10' },
-  { id: 5, name: 'Ethan Hunt', company: 'Impossible Labs', email: 'ethan@impossible.org', phone: '+1 555-0131', status: 'Lost', date: '2026-06-08' },
-  { id: 6, name: 'Fiona Gallagher', company: 'Patsy\'s Pies', email: 'fiona@patsys.com', phone: '+1 555-0212', status: 'Won', date: '2026-06-16' },
-  { id: 7, name: 'George Cooper', company: 'Medford High', email: 'george@medford.edu', phone: '+1 555-0223', status: 'Contacted', date: '2026-06-13' },
-  { id: 8, name: 'Hannah Abbott', company: 'Leaky Cauldron', email: 'hannah@leakycauldron.co.uk', phone: '+1 555-0234', status: 'Qualified', date: '2026-06-11' },
-  { id: 9, name: 'Ian Malcolm', company: 'Jurassic Park', email: 'ian@chaos.org', phone: '+1 555-0245', status: 'New', date: '2026-06-16' },
-  { id: 10, name: 'Julia Roberts', company: 'Pretty Woman Inc', email: 'julia@prettywoman.com', phone: '+1 555-0256', status: 'Proposal Sent', date: '2026-06-09' }
-];
+import { useLeads } from '../context/LeadContext';
 
 /**
  * Dashboard page component of Startup CRM Lite.
@@ -34,6 +19,7 @@ const SAMPLE_LEADS = [
  * @returns {React.ReactElement} The rendered Dashboard page
  */
 export default function Dashboard() {
+  const { leads } = useLeads();
   
   /**
    * Action handler triggered when clicking 'Add New Lead' from QuickActions.
@@ -60,7 +46,7 @@ export default function Dashboard() {
     try {
       // Create CSV content headers and rows
       const headers = ['ID', 'Name', 'Company', 'Email', 'Phone', 'Status', 'Date Added'];
-      const rows = SAMPLE_LEADS.map(lead => [
+      const rows = leads.map(lead => [
         lead.id,
         `"${lead.name.replace(/"/g, '""')}"`,
         `"${lead.company.replace(/"/g, '""')}"`,
@@ -105,14 +91,14 @@ export default function Dashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard 
           title="Total Leads" 
-          value="1,248" 
+          value={leads.length.toString()} 
           icon={Users} 
           change="+12%" 
           color="primary" 
         />
         <StatsCard 
           title="New Leads (Today)" 
-          value="36" 
+          value={leads.filter(l => l.status === 'New').length.toString()} 
           icon={UserPlus} 
           change="+5%" 
           color="success" 
@@ -144,12 +130,12 @@ export default function Dashboard() {
         
         {/* Left main block: Recent Leads table (2/3 width on desktop) */}
         <div className="lg:col-span-2">
-          <RecentLeads leads={SAMPLE_LEADS} />
+          <RecentLeads leads={leads} />
         </div>
         
         {/* Right sidebar block: Pipeline status overview (1/3 width on desktop) */}
         <div className="lg:col-span-1">
-          <PipelineOverview leads={SAMPLE_LEADS} />
+          <PipelineOverview leads={leads} />
         </div>
 
       </div>

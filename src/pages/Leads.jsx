@@ -8,17 +8,9 @@ import SearchBar from '../components/common/SearchBar';
 import FilterBar from '../components/common/FilterBar';
 import EmptyState from '../components/common/EmptyState';
 
-/**
- * Initial dummy list of leads to populate the system.
- */
-const INITIAL_LEADS = [
-  { id: 1, name: 'Alice Smith', company: 'TechNova', email: 'alice@technova.io', phone: '+1 555-0199', status: 'New', source: 'Website', date: '2026-06-15' },
-  { id: 2, name: 'Bob Johnson', company: 'Apex Global', email: 'bob@apex.com', phone: '+1 555-0142', status: 'Contacted', source: 'LinkedIn', date: '2026-06-14' },
-  { id: 3, name: 'Charlie Davis', company: 'Initech Solutions', email: 'charlie@initech.co', phone: '+1 555-0176', status: 'Meeting Scheduled', source: 'Referral', date: '2026-06-12' },
-  { id: 4, name: 'Diana Prince', company: 'Wayne Enterprises', email: 'diana@wayne.com', phone: '+1 555-0188', status: 'Proposal Sent', source: 'Email Campaign', date: '2026-06-10' },
-  { id: 5, name: 'Ethan Hunt', company: 'Impossible Labs', email: 'ethan@impossible.org', phone: '+1 555-0131', status: 'Lost', source: 'Cold Call', date: '2026-06-08' },
-  { id: 6, name: 'Fiona Gallagher', company: 'Patsy\'s Pies', email: 'fiona@patsys.com', phone: '+1 555-0212', status: 'Won', source: 'Other', date: '2026-06-16' }
-];
+
+
+import { useLeads } from '../context/LeadContext';
 
 /**
  * Lead Management page of Startup CRM Lite.
@@ -28,10 +20,7 @@ const INITIAL_LEADS = [
  * @returns {React.ReactElement} The rendered Leads page
  */
 export default function Leads() {
-  const [leads, setLeads] = useState(() => {
-    const saved = localStorage.getItem('crm_leads');
-    return saved ? JSON.parse(saved) : INITIAL_LEADS;
-  });
+  const { leads, addLead, updateLead, deleteLead } = useLeads();
 
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All');
@@ -39,9 +28,6 @@ export default function Leads() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedLead, setSelectedLead] = useState(null);
 
-  useEffect(() => {
-    localStorage.setItem('crm_leads', JSON.stringify(leads));
-  }, [leads]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -81,21 +67,10 @@ export default function Leads() {
 
   const handleFormSubmit = (formData) => {
     if (selectedLead) {
-      setLeads((prev) =>
-        prev.map((lead) =>
-          lead.id === selectedLead.id
-            ? { ...lead, ...formData }
-            : lead
-        )
-      );
+      updateLead(selectedLead.id, formData);
       toast.success(`${formData.name} updated successfully!`);
     } else {
-      const newLead = {
-        ...formData,
-        id: Date.now(),
-        date: new Date().toISOString().split('T')[0]
-      };
-      setLeads((prev) => [newLead, ...prev]);
+      addLead(formData);
       toast.success(`${formData.name} added to pipeline!`);
     }
     closeModal();
@@ -106,7 +81,7 @@ export default function Leads() {
     if (!leadToDelete) return;
 
     if (window.confirm(`Are you sure you want to delete ${leadToDelete.name}?`)) {
-      setLeads((prev) => prev.filter((lead) => lead.id !== id));
+      deleteLead(id);
       toast.error(`${leadToDelete.name} has been removed.`, {
         icon: '🗑️'
       });
