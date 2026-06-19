@@ -33,7 +33,7 @@ export default function LeadTable({ leads = [], onEdit, onDelete }) {
             aria-label="Table view"
             className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold rounded-lg cursor-pointer transition-all duration-200 ${
               viewMode === 'table'
-                ? 'bg-white text-primary shadow-sm'
+                ? 'bg-card text-primary shadow-sm'
                 : 'text-text-gray hover:text-text-dark'
             }`}
           >
@@ -45,7 +45,7 @@ export default function LeadTable({ leads = [], onEdit, onDelete }) {
             aria-label="Card grid view"
             className={`flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold rounded-lg cursor-pointer transition-all duration-200 ${
               viewMode === 'cards'
-                ? 'bg-white text-primary shadow-sm'
+                ? 'bg-card text-primary shadow-sm'
                 : 'text-text-gray hover:text-text-dark'
             }`}
           >

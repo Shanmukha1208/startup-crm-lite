@@ -23,28 +23,28 @@ export default function BarChartCard({ data }) {
               data={data}
               margin={{ top: 10, right: 10, left: -25, bottom: 0 }}
             >
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-slate-200)" />
               <XAxis 
                 dataKey="month" 
                 tickLine={false} 
                 axisLine={false} 
-                stroke="#64748B" 
+                stroke="var(--color-text-gray)" 
                 style={{ fontSize: '12px' }} 
               />
               <YAxis 
                 tickLine={false} 
                 axisLine={false} 
-                stroke="#64748B" 
+                stroke="var(--color-text-gray)" 
                 style={{ fontSize: '12px' }} 
                 allowDecimals={false}
               />
               <Tooltip
-                cursor={{ fill: '#F1F5F9', opacity: 0.5 }}
+                cursor={{ fill: 'var(--color-slate-100)', opacity: 0.5 }}
                 formatter={(value) => [`${value} Leads`, 'Volume']}
-                labelStyle={{ fontWeight: 'bold', color: '#64748B' }}
+                labelStyle={{ fontWeight: 'bold', color: 'var(--color-text-gray)' }}
                 contentStyle={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#E2E8F0',
+                  backgroundColor: 'var(--color-card)',
+                  borderColor: 'var(--color-slate-200)',
                   borderRadius: '12px',
                   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                   fontSize: '12px',

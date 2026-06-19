@@ -40,7 +40,7 @@ export default function SearchBar({ value, onChange }) {
         onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search by name, company, or email..."
         aria-label="Search leads by name, company, or email"
-        className="w-full pl-10 pr-10 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark placeholder-text-gray focus:outline-none focus:border-primary focus:bg-white transition-colors duration-200"
+        className="w-full pl-10 pr-10 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark placeholder-text-gray focus:outline-none focus:border-primary focus:bg-card transition-colors duration-200"
       />
       {inputValue && (
         <button

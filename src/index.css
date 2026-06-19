@@ -24,6 +24,19 @@
   --color-text-dark: #F9FAFB;
   --color-text-gray: #9CA3AF;
   color-scheme: dark;
+
+  /* Invert slate colors to fix hardcoded classes in dark mode */
+  --color-slate-50: #0f172a;
+  --color-slate-100: #1e293b;
+  --color-slate-150: #263449;
+  --color-slate-200: #334155;
+  --color-slate-300: #475569;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #cbd5e1;
+  --color-slate-600: #e2e8f0;
+  --color-slate-700: #f1f5f9;
+  --color-slate-800: #f8fafc;
+  --color-slate-900: #ffffff;
 }
 
 /* Smooth transition for theme switching */

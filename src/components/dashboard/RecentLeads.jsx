@@ -70,7 +70,7 @@ export default function RecentLeads({ leads = [] }) {
                   <th className="px-5 py-3 text-right">Date Added</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 text-sm text-text-dark font-medium bg-white">
+              <tbody className="divide-y divide-slate-100 text-sm text-text-dark font-medium bg-card">
                 {recentLeads.length === 0 ? (
                   <tr>
                     <td colSpan="4" className="px-5 py-8 text-center text-text-gray/70 italic text-xs">

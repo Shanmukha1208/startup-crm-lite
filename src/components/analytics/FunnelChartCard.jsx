@@ -24,8 +24,8 @@ export default function FunnelChartCard({ data }) {
               <Tooltip 
                 formatter={(value) => [`${value} Leads`, 'Volume']}
                 contentStyle={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#E2E8F0',
+                  backgroundColor: 'var(--color-card)',
+                  borderColor: 'var(--color-slate-200)',
                   borderRadius: '12px',
                   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                   fontSize: '12px',
@@ -40,7 +40,7 @@ export default function FunnelChartCard({ data }) {
                 {/* Stage Name outside the funnel */}
                 <LabelList 
                   position="right" 
-                  fill="#64748B" 
+                  fill="var(--color-text-gray)" 
                   stroke="none" 
                   dataKey="name" 
                   style={{ fontSize: '12px', fontWeight: 600 }}

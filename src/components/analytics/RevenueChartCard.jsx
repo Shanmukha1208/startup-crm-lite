@@ -58,21 +58,21 @@ export default function RevenueChartCard({ leads }) {
                   <stop offset="95%" stopColor="#22C55E" stopOpacity={0}/>
                 </linearGradient>
               </defs>
-              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#E2E8F0" />
-              <XAxis dataKey="month" tickLine={false} axisLine={false} stroke="#64748B" style={{ fontSize: '12px' }} />
+              <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="var(--color-slate-200)" />
+              <XAxis dataKey="month" tickLine={false} axisLine={false} stroke="var(--color-text-gray)" style={{ fontSize: '12px' }} />
               <YAxis 
                 tickFormatter={formatCurrency}
                 tickLine={false} 
                 axisLine={false} 
-                stroke="#64748B" 
+                stroke="var(--color-text-gray)" 
                 style={{ fontSize: '12px' }} 
               />
               <Tooltip
                 formatter={(value) => [new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(value), 'Revenue']}
-                labelStyle={{ fontWeight: 'bold', color: '#64748B' }}
+                labelStyle={{ fontWeight: 'bold', color: 'var(--color-text-gray)' }}
                 contentStyle={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#E2E8F0',
+                  backgroundColor: 'var(--color-card)',
+                  borderColor: 'var(--color-slate-200)',
                   borderRadius: '12px',
                   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                   fontSize: '12px',

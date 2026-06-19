@@ -149,7 +149,7 @@ export default function Leads() {
           role="dialog"
           aria-modal="true"
         >
-          <div className="bg-white border border-slate-250 w-full max-w-lg rounded-2xl shadow-xl overflow-hidden animate-slide-up">
+          <div className="bg-card border border-slate-250 w-full max-w-lg rounded-2xl shadow-xl overflow-hidden animate-slide-up">
             <div className="px-6 py-4.5 border-b border-slate-100 flex items-center justify-between">
               <h2 className="text-lg font-bold text-text-dark font-roboto">
                 {selectedLead ? 'Edit Lead Profile' : 'Add New Lead'}

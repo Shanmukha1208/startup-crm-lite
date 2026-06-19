@@ -108,7 +108,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
           value={formData.name}
           onChange={handleChange}
           placeholder="e.g. John Doe"
-          className={`px-4 py-2.5 text-sm bg-slate-50 border rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-white transition-all ${
+          className={`px-4 py-2.5 text-sm bg-slate-50 border rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-card transition-all ${
             errors.name ? 'border-danger focus:border-danger ring-1 ring-danger/10' : 'border-slate-200'
           }`}
           aria-invalid={!!errors.name}
@@ -133,7 +133,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
           value={formData.company}
           onChange={handleChange}
           placeholder="e.g. ACME Corp"
-          className={`px-4 py-2.5 text-sm bg-slate-50 border rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-white transition-all ${
+          className={`px-4 py-2.5 text-sm bg-slate-50 border rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-card transition-all ${
             errors.company ? 'border-danger focus:border-danger ring-1 ring-danger/10' : 'border-slate-200'
           }`}
           aria-invalid={!!errors.company}
@@ -160,7 +160,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             value={formData.email}
             onChange={handleChange}
             placeholder="e.g. john@company.com"
-            className={`px-4 py-2.5 text-sm bg-slate-50 border rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-white transition-all ${
+            className={`px-4 py-2.5 text-sm bg-slate-50 border rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-card transition-all ${
               errors.email ? 'border-danger focus:border-danger ring-1 ring-danger/10' : 'border-slate-200'
             }`}
             aria-invalid={!!errors.email}
@@ -185,7 +185,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             value={formData.phone}
             onChange={handleChange}
             placeholder="e.g. +1 555-0199"
-            className="px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-white transition-all"
+            className="px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark placeholder-text-gray/70 focus:outline-none focus:border-primary focus:bg-card transition-all"
           />
         </div>
       </div>
@@ -202,7 +202,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             name="status"
             value={formData.status}
             onChange={handleChange}
-            className="px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark focus:outline-none focus:border-primary focus:bg-white transition-all cursor-pointer"
+            className="px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark focus:outline-none focus:border-primary focus:bg-card transition-all cursor-pointer"
           >
             {STATUS_OPTIONS.map((status) => (
               <option key={status} value={status}>
@@ -222,7 +222,7 @@ export default function LeadForm({ initialData, onSubmit, onCancel }) {
             name="source"
             value={formData.source}
             onChange={handleChange}
-            className="px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark focus:outline-none focus:border-primary focus:bg-white transition-all cursor-pointer"
+            className="px-4 py-2.5 text-sm bg-slate-50 border border-slate-200 rounded-xl text-text-dark focus:outline-none focus:border-primary focus:bg-card transition-all cursor-pointer"
           >
             {SOURCE_OPTIONS.map((source) => (
               <option key={source} value={source}>

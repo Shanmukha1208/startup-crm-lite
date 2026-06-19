@@ -81,14 +81,14 @@ export default function PieChartCard({ data }) {
               <Tooltip
                 formatter={(value) => [`${value} Leads`, 'Count']}
                 contentStyle={{
-                  backgroundColor: '#FFFFFF',
-                  borderColor: '#E2E8F0',
+                  backgroundColor: 'var(--color-card)',
+                  borderColor: 'var(--color-slate-200)',
                   borderRadius: '12px',
                   boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)',
                   fontSize: '12px',
                   fontWeight: 'bold',
                 }}
-                itemStyle={{ color: '#0F172A' }}
+                itemStyle={{ color: 'var(--color-text-dark)' }}
               />
               <Legend content={renderCustomLegend} verticalAlign="bottom" />
             </PieChart>
