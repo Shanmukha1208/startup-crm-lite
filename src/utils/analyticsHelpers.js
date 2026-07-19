@@ -116,10 +116,10 @@ export function getFunnelData(leads) {
   });
 
   return [
-    { name: 'Total Leads', value: counts['New'], fill: '#94A3B8' },
-    { name: 'Contacted', value: counts['Contacted'], fill: '#2563EB' },
-    { name: 'Meeting', value: counts['Meeting Scheduled'], fill: '#F59E0B' },
-    { name: 'Proposal', value: counts['Proposal Sent'], fill: '#7C3AED' },
+    { name: 'Total Leads', value: counts['New'], fill: '#9784B0' },
+    { name: 'Contacted', value: counts['Contacted'], fill: '#6B46C1' },
+    { name: 'Meeting', value: counts['Meeting Scheduled'], fill: '#9272D4' },
+    { name: 'Proposal', value: counts['Proposal Sent'], fill: '#FF8AAE' },
     { name: 'Won', value: counts['Won'], fill: '#22C55E' }
   ];
 }

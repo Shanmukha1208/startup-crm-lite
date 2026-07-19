@@ -53,7 +53,7 @@ export default function BarChartCard({ data }) {
               />
               <Bar 
                 dataKey="count" 
-                fill="#2563EB" 
+                fill="#6B46C1" 
                 radius={[4, 4, 0, 0]} 
                 animationDuration={1000}
                 animationEasing="ease-in-out"

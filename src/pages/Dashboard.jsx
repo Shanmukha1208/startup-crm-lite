@@ -1,5 +1,5 @@
-import React from 'react';
-import { Users, UserPlus, DollarSign, TrendingUp } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Users, UserPlus, DollarSign, TrendingUp, X } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 
 // Import our custom sub-components
@@ -7,6 +7,7 @@ import StatsCard from '../components/dashboard/StatsCard';
 import PipelineOverview from '../components/dashboard/PipelineOverview';
 import RecentLeads from '../components/dashboard/RecentLeads';
 import QuickActions from '../components/dashboard/QuickActions';
+import LeadForm from '../components/leads/LeadForm';
 
 import { useLeads } from '../context/LeadContext';
 
@@ -19,21 +20,59 @@ import { useLeads } from '../context/LeadContext';
  * @returns {React.ReactElement} The rendered Dashboard page
  */
 export default function Dashboard() {
-  const { leads } = useLeads();
-  
+  const { leads, addLead } = useLeads();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Lock body scroll when modal is open
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isModalOpen]);
+
+  // Handle ESC key to close modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isModalOpen) {
+        closeModal();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isModalOpen]);
+
   /**
    * Action handler triggered when clicking 'Add New Lead' from QuickActions.
-   * Prompts the user with a notification about future feature integrations.
+   * Opens the lead creation modal.
    */
   const handleAddLead = () => {
-    toast('Lead creation dialog will be wired in Phase 8!', {
-      icon: '💡',
-      style: {
-        borderRadius: '12px',
-        background: '#0F172A',
-        color: '#FFF',
-      },
-    });
+    setIsModalOpen(true);
+  };
+
+  /**
+   * Closes the lead creation modal.
+   */
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  /**
+   * Handles submitting a new lead record from the Dashboard modal.
+   *
+   * @param {Object} formData Form inputs
+   */
+  const handleFormSubmit = async (formData) => {
+    try {
+      await addLead(formData);
+      closeModal();
+    } catch (error) {
+      console.error('Failed to create lead from dashboard:', error);
+    }
   };
 
   /**
@@ -48,12 +87,12 @@ export default function Dashboard() {
       const headers = ['ID', 'Name', 'Company', 'Email', 'Phone', 'Status', 'Date Added'];
       const rows = leads.map(lead => [
         lead.id,
-        `"${lead.name.replace(/"/g, '""')}"`,
-        `"${lead.company.replace(/"/g, '""')}"`,
-        lead.email,
-        lead.phone,
-        lead.status,
-        lead.date
+        `"${(lead.name || '').replace(/"/g, '""')}"`,
+        `"${(lead.company || '').replace(/"/g, '""')}"`,
+        lead.email || '',
+        lead.phone || '',
+        lead.status || '',
+        lead.date || ''
       ]);
       
       const csvContent = [headers.join(','), ...rows.map(e => e.join(','))].join('\n');
@@ -87,7 +126,6 @@ export default function Dashboard() {
       </div>
 
       {/* Responsive Grid for Stats Cards */}
-      {/* Responsive breakpoints: 1 col on mobile (default), 2 cols on tablet (sm:), 4 cols on desktop (lg:) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <StatsCard 
           title="Total Leads" 
@@ -139,6 +177,37 @@ export default function Dashboard() {
         </div>
 
       </div>
+
+      {/* Add New Lead Modal Dialog */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs flex items-center justify-center p-4 z-50 animate-fade-in"
+          role="dialog"
+          aria-modal="true"
+        >
+          <div className="bg-card border border-slate-250 w-full max-w-lg rounded-2xl shadow-xl overflow-hidden animate-slide-up max-h-[90vh] flex flex-col">
+            <div className="px-6 py-4 border-b border-slate-100 flex items-center justify-between shrink-0">
+              <h2 className="text-lg font-bold text-text-dark font-roboto">
+                Add New Lead
+              </h2>
+              <button
+                onClick={closeModal}
+                aria-label="Close dialog"
+                className="p-1.5 rounded-lg text-slate-400 hover:text-text-dark hover:bg-slate-50 active:scale-95 transition-all cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <div className="p-6 overflow-y-auto">
+              <LeadForm
+                onSubmit={handleFormSubmit}
+                onCancel={closeModal}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

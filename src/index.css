@@ -2,44 +2,78 @@
 
 @import "tailwindcss";
 
-@theme{
-    --font-roboto: "Roboto", sans-serif;
+@theme {
+  --font-roboto: "Roboto", sans-serif;
 
-    --color-primary: #2563EB;
+  --color-primary: #6B46C1;
+  --color-secondary: #9272D4;
+  --color-accent: #FF8AAE;
   --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-danger: #EF4444;
 
-  --color-background: #F8FAFC;
-  --color-card: #FFFFFF;
+  --color-background: #FAF7FD;
+  --color-card: #F0EAF8;
+  --color-surface: #F0EAF8;
 
-  --color-text-dark: #0F172A;
-  --color-text-gray: #64748B;
+  --color-text-dark: #241A38;
+  --color-text-gray: #6B5D85;
+
+  --color-border: #DDD3ED;
+}
+
+:root {
+  --color-primary: #6B46C1;
+  --color-secondary: #9272D4;
+  --color-accent: #FF8AAE;
+  --color-background: #FAF7FD;
+  --color-card: #F0EAF8;
+  --color-surface: #F0EAF8;
+  --color-text-dark: #241A38;
+  --color-text-gray: #6B5D85;
+  --color-border: #DDD3ED;
+
+  --color-slate-50: #faf7fd;
+  --color-slate-100: #f0eaf8;
+  --color-slate-200: #ddd3ed;
+  --color-slate-300: #cbbcd9;
+  --color-slate-400: #9784b0;
+  --color-slate-500: #6b5d85;
+  --color-slate-600: #4e4265;
+  --color-slate-700: #382e4b;
+  --color-slate-800: #2b223c;
+  --color-slate-900: #241a38;
 }
 
 /* Dark Mode Overrides */
 .dark {
-  --color-background: #0B0F19;
-  --color-card: #111827;
-  --color-text-dark: #F9FAFB;
-  --color-text-gray: #9CA3AF;
+  --color-primary: #A885FF;
+  --color-secondary: #C4ABFF;
+  --color-accent: #FFA6C2;
+  --color-background: #171122;
+  --color-card: #241B35;
+  --color-surface: #241B35;
+  --color-text-dark: #F8F6FC;
+  --color-text-gray: #B8ACC8;
+  --color-border: #3C3154;
   color-scheme: dark;
 
-  /* Invert slate colors to fix hardcoded classes in dark mode */
-  --color-slate-50: #0f172a;
-  --color-slate-100: #1e293b;
-  --color-slate-150: #263449;
-  --color-slate-200: #334155;
-  --color-slate-300: #475569;
-  --color-slate-400: #94a3b8;
-  --color-slate-500: #cbd5e1;
-  --color-slate-600: #e2e8f0;
-  --color-slate-700: #f1f5f9;
-  --color-slate-800: #f8fafc;
-  --color-slate-900: #ffffff;
+  --color-slate-50: #1d162b;
+  --color-slate-100: #29203c;
+  --color-slate-150: #342a4b;
+  --color-slate-200: #3f335b;
+  --color-slate-300: #57487b;
+  --color-slate-400: #8c7aa6;
+  --color-slate-500: #b8acc8;
+  --color-slate-600: #d6ccdf;
+  --color-slate-700: #eae4f1;
+  --color-slate-800: #f4f0f9;
+  --color-slate-900: #f8f6fc;
 }
 
 /* Smooth transition for theme switching */
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
-}
+  background-color: var(--color-background);
+  color: var(--color-text-dark);
+}

@@ -3,15 +3,15 @@ import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from 'recha
 import { PieChart as PieChartIcon } from 'lucide-react';
 
 const STATUS_COLORS = {
-  'New': '#94A3B8',
-  'Contacted': '#2563EB',
-  'Meeting Scheduled': '#F59E0B',
-  'Proposal Sent': '#7C3AED',
+  'New': '#9784B0',
+  'Contacted': '#6B46C1',
+  'Meeting Scheduled': '#9272D4',
+  'Proposal Sent': '#FF8AAE',
   'Won': '#22C55E',
   'Lost': '#EF4444',
 };
 
-const DEFAULT_COLOR = '#CBD5E1';
+const DEFAULT_COLOR = '#DDD3ED';
 
 /**
  * Renders a custom legend that includes counts and percentages.

@@ -23,10 +23,10 @@ export default function StatusBadge({ status }) {
       badgeClasses = 'bg-warning/10 text-warning border-warning/20';
       break;
     case 'Meeting Scheduled':
-      badgeClasses = 'bg-blue-100 text-blue-700 border-blue-200';
+      badgeClasses = 'bg-primary/10 text-primary border-primary/20';
       break;
     case 'Proposal Sent':
-      badgeClasses = 'bg-purple-100 text-purple-700 border-purple-200';
+      badgeClasses = 'bg-secondary/10 text-secondary border-secondary/20';
       break;
     case 'Won':
       badgeClasses = 'bg-success/10 text-success border-success/20';

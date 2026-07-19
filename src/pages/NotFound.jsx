@@ -14,8 +14,8 @@ export default function NotFound() {
       
       {/* Decorative Ambient Background Glows */}
       <div className="absolute top-[10%] left-[15%] w-72 md:w-96 h-72 md:h-96 bg-primary/20 rounded-full blur-3xl opacity-60 animate-pulse" />
-      <div className="absolute bottom-[10%] right-[15%] w-72 md:w-96 h-72 md:h-96 bg-purple-500/15 rounded-full blur-3xl opacity-60" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-[40%] right-[30%] w-64 h-64 bg-success/10 rounded-full blur-3xl opacity-50 animate-pulse" style={{ animationDelay: '1s' }} />
+      <div className="absolute bottom-[10%] right-[15%] w-72 md:w-96 h-72 md:h-96 bg-secondary/20 rounded-full blur-3xl opacity-60" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-[40%] right-[30%] w-64 h-64 bg-accent/15 rounded-full blur-3xl opacity-50 animate-pulse" style={{ animationDelay: '1s' }} />
 
       {/* Main Glassmorphic Card Container */}
       <div className="relative z-10 w-full max-w-xl bg-card/80 dark:bg-card/60 backdrop-blur-2xl border border-slate-200/50 dark:border-slate-700/50 rounded-[2rem] p-8 md:p-14 text-center shadow-2xl shadow-primary/5">
@@ -31,7 +31,7 @@ export default function NotFound() {
         </div>
 
         {/* 404 Hero Error Code with Gradient */}
-        <h1 className="text-8xl md:text-9xl font-black font-roboto tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-primary via-blue-500 to-purple-600 mb-2 drop-shadow-sm">
+        <h1 className="text-8xl md:text-9xl font-black font-roboto tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-primary via-secondary to-accent mb-2 drop-shadow-sm">
           404
         </h1>
         
